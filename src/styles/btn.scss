@@ -1,0 +1,52 @@
+@import 'variables';
+
+@mixin violetColorBtn($color) {
+  background: $color;
+  color:#fff;
+  &:hover {
+    color:#fff;
+    background: #7995F4;
+    &:before,
+    &:after {
+      color:#fff;
+      background: $color;
+    }
+  }
+  &:focus {
+    color:#fff;
+    background: #435BAE;
+  }
+ &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+    color: #FFFFFF;
+    background: #B8C8FF;
+  }
+}
+@mixin normalColorBtn($normal) {
+  background: none;
+  color: $normal;
+  &:hover {
+    color:#556EC4;
+    background: #EDF5FE;
+    &:before,
+    &:after {
+      color:$normal;
+      background: none;
+    }
+  }
+  &:focus {
+    color:#556EC4;
+    background: #EDF5FE;
+  }
+  &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+    color:  #666666;
+    background: #F5F5F5;
+  }
+}
+.violet-btn {
+  @include violetColorBtn($violet)
+}
+
+.normal-btn {
+  @include normalColorBtn($normal)
+}
+

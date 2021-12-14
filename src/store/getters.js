@@ -1,0 +1,26 @@
+const getters = {
+  sidebar: state => state.app.sidebar,
+  size: state => state.app.size,
+  device: state => state.app.device,
+  loadingBtn: state => state.app.loadingBtn,
+  imgStatus: state => state.app.imgStatus,
+  textState: state => state.app.textState,
+  visitedViews: state => state.tagsView.visitedViews,
+  cachedViews: state => state.tagsView.cachedViews,
+  token: state => state.user.token,
+  avatar: state => state.user.avatar,
+  introduction: state => state.user.introduction,
+  roles: state => state.user.roles,
+  isAdmin: state => state.permission.isAdmin,
+  menuList: state => state.permission.menuList,
+  name: state => state.permission.name,
+  mobile: state => state.permission.mobile,
+  orgYgzId: state => state.permission.orgYgzId,
+  orgCode: state => state.permission.orgCode,
+  permission_routes: state => state.permission.routes,
+  roleIds: state => state.permission.roleIds,
+  orgName: state => state.permission.orgName,
+  orgLevel: state => state.permission.orgLevel,
+  errorLogs: state => state.errorLog.logs
+}
+export default getters
