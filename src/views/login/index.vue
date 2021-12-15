@@ -1,30 +1,57 @@
+<script setup>
+    import {reactive, onMounted} from "vue";
+    import {login} from '@/api/user';
+    import {setToken,removeToken} from '@/utils/auth'
+
+    const modelData = reactive({
+        openId: '',
+        accessToken: ''
+    })
+    // 获取路由菜单
+    const getMenu = () => {
+        const params = {
+            openId: modelData.openId,
+            accessToken: modelData.accessToken
+        }
+        login(params).then(res => {
+            handleLogin()
+        })
+    }
+    // 清除数据
+    const clearString = () => {
+        removeToken('openId')
+        removeToken('accessToken')
+    }
+    const getTokenAndId = () => {
+        modelData.openId = '0434e0f51199448089a88af0ae37ca9b'
+        modelData.accessToken = 'a766b0d7b3ce4905a39ad37772453dd2'
+        setToken('openId', modelData.openId)
+        setToken('accessToken', modelData.accessToken)
+    }
+   const  handleLogin = () => {
+        var url = import.meta.env.MODE === 'production' ? glob.toUrl + '/bmop/html/#/dashboard' : '/#/dashboard'
+        window.location.replace(url)
+    }
+    onMounted(async () => {
+        await clearString()
+        await getTokenAndId()
+        await getMenu()
+    })
+
+</script>
 <template>
-    <div id="app">
-        <div id="loader-wrapper">
-            <div id="loader"></div>
-            <div class="loader-section section-left"></div>
-            <div class="loader-section section-right"></div>
-            <div class="load_title">页面初始化中...
-                <br>
-                <span>版本:V1.0.0</span>
-            </div>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+        <div class="load_title">页面初始化中...
+            <br>
+            <span>版本:V1.0.0</span>
         </div>
     </div>
 </template>
-
-<script setup>
-   const demo = () => {
-        console.log('123');
-    }
-   demo ()
-</script>
-
 <style lang="scss" scoped>
-    #app {
-        height: 100%;
-        margin: 0px;
-        padding: 0px;
-    }
+
 
     .chromeframe {
         margin: 0.2em 0;

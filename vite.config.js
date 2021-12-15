@@ -9,14 +9,12 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
-const path = require('path')
-function resolve(dir) {
-  return path.join(__dirname, dir)
-}
+import path from "path";
+
 export default defineConfig({
   base: "./",
   alias: {
-    '@': resolve('src')
+    "@": path.resolve(__dirname, "src"),
   },
   css: {
     //css预处理 路径最后要加上;不然会报错
@@ -49,9 +47,9 @@ export default defineConfig({
     //反向代理配置，注意rewrite写法，开始没看文档在这里踩了坑
     proxy: {
       '/api': {
-        target: 'http://192.168.99.223:3000',   //代理接口
+        target: 'https://testweb.datasw.com.cn',   //代理接口
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\api/, '')
       }
     }
   }
